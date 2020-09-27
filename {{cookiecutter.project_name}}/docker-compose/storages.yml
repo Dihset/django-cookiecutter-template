@@ -1,0 +1,52 @@
+version: "3.5"
+
+
+services:
+  #================================
+  #      POSTGRESQL DATABASE
+  #================================
+  {{cookiecutter.project_name}}-postgresql:
+    container_name: {{cookiecutter.project_name}}-postgresql
+    image: postgres:12-alpine
+    hostname: {{cookiecutter.project_name}}-postgresql
+    ports:
+      - 5432:5432
+    volumes:
+      - ../.data/{{cookiecutter.project_name}}-postgresql:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER={{cookiecutter.default_db_user}}
+      - POSTGRES_PASSWORD={{cookiecutter.default_db_password}}
+      - POSTGRES_DB={{cookiecutter.default_db_name}}
+    networks:
+      - {{cookiecutter.project_name}}-network
+    restart: always
+    
+{% if cookiecutter.use_pgadmin == "yes" %}
+  #================================
+  #    POSTGRESQL DATABASE GUI
+  #================================
+  {{cookiecutter.project_name}}-postgresql-gui:
+    container_name: {{cookiecutter.project_name}}-postgresql-gui
+    image: dpage/pgadmin4
+    hostname: {{cookiecutter.project_name}}-postgresql-gui
+    ports:
+      - 5050:80
+    volumes:
+       - ../.data/pgadmin:/root/.pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL={{cookiecutter.default_pgadmin_email}}
+      - PGADMIN_DEFAULT_PASSWORD={{cookiecutter.default_pgadmin_password}}
+    depends_on:
+      - {{cookiecutter.project_name}}-postgresql
+    networks:
+      - {{cookiecutter.project_name}}-network
+    restart: always
+{% endif %}
+
+#================================
+#         NETWORK
+#================================
+networks:
+  {{cookiecutter.project_name}}-network:
+    external:
+      name: {{cookiecutter.project_name}}-network

@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv('DB_NAME', '{{cookiecutter.default_db_name}}'),
+        'USER' : os.getenv('DB_USER', '{{cookiecutter.default_db_user}}'),
+        'PASSWORD' : os.getenv('DB_PASSWORD', '{{cookiecutter.default_db_password}}'),
+        'HOST' : os.getenv('DB_HOST', '{{cookiecutter.project_name}}-postgresql'),
+        'PORT' : int(os.getenv('DB_PORT', 5432)),
     }
 }
 

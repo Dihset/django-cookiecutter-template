@@ -24,7 +24,8 @@
 	"extensions": [
 		"ms-python.python"
 	],
+	"runArgs": ["--network={{cookiecutter.project_name}}-network"],
 	"forwardPorts": [8000],
-	"postCreateCommand": "sudo pip3 install -r requirements.txt && sudo pip3 install -r requirements.dev.txt",
+	"postCreateCommand": "sudo pip install -r requirements.txt && sudo pip3 install -r requirements.dev.txt",
 	"remoteUser": "vscode"
 }

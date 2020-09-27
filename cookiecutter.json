@@ -1,3 +1,9 @@
 {
-    "project_name": "test-project"
+    "project_name": "test-project", 
+    "default_db_user": "django",
+    "default_db_password": "password",
+    "default_db_name": "{{cookiecutter.project_name}}-db",
+    "use_pgadmin": ["yes", "no"],
+    "default_pgadmin_email": "admin@admin.com",
+    "default_pgadmin_password": "password"
 }
