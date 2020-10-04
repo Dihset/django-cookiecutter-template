@@ -5,7 +5,7 @@
 
 | Environment value name | Description | Default value |
 |------------------------|-------------|---------------|
-| SECRET_KEY | Secret key | secret |
+| SECRET_KEY | Secret key | {{cookiecutter.default_django_secret}} |
 | DEBUG | Debug mode | True |
 | DB_NAME | Database name | {{cookiecutter.default_db_name}} |
 | DB_USER | Database username | {{cookiecutter.default_db_user}} |
