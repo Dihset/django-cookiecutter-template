@@ -1,0 +1,16 @@
+flake8
+flake8-isort
+flake8-docstrings
+flake8-builtins
+flake8-quotes
+flake8-bugbear
+flake8-comprehensions
+flake8-eradicate
+flake8-pep3101
+flake8-print
+flake8-super
+flake8-django
+{% if cookiecutter.testing == "pytest" -%}
+pytest==6.2.4
+pytest-django==4.2.0
+{% endif %}
